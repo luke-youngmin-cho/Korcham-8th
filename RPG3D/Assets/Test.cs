@@ -6,17 +6,29 @@ public class DummyProgram
     void Main()
     {
         Test test = new Test(); // 이렇게쓰믄 안댐
-        new GameObject().AddComponent<Test>(); // 요렇게 써야함
+        test = new GameObject().AddComponent<Test>(); // 요렇게 써야함
+        test.a.SayHi();
+    }
+}
+
+public class A
+{ 
+    public void SayHi()
+    {
+        Debug.Log("Hi");
     }
 }
 
 public class Test : MonoBehaviour
 {
+    public A a;
+
     // 플레이모드중 스크립트 인스턴스가 생성될 때 호출됨. 
     // Hierarchy 에서 GameObject 가 활성화되어있으면서 이 컴포넌트가 생성될때 호출
     // 생성자 내용 구현 대용
     private void Awake()
     {
+        a = new A();
         Debug.Log("[Test] : Awake");
     }
 
