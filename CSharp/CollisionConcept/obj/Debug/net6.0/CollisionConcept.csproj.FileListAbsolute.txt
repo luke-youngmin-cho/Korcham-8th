@@ -1,0 +1,14 @@
+C:\Users\USER\Downloads\CSharp\CollisionConcept\bin\Debug\net6.0\CollisionConcept.exe
+C:\Users\USER\Downloads\CSharp\CollisionConcept\bin\Debug\net6.0\CollisionConcept.deps.json
+C:\Users\USER\Downloads\CSharp\CollisionConcept\bin\Debug\net6.0\CollisionConcept.runtimeconfig.json
+C:\Users\USER\Downloads\CSharp\CollisionConcept\bin\Debug\net6.0\CollisionConcept.dll
+C:\Users\USER\Downloads\CSharp\CollisionConcept\bin\Debug\net6.0\CollisionConcept.pdb
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.AssemblyInfoInputs.cache
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.AssemblyInfo.cs
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.csproj.CoreCompileInputs.cache
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.dll
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\refint\CollisionConcept.dll
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.pdb
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\CollisionConcept.genruntimeconfig.cache
+C:\Users\USER\Downloads\CSharp\CollisionConcept\obj\Debug\net6.0\ref\CollisionConcept.dll

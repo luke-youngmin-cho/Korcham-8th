@@ -89,6 +89,8 @@ public class TargetDetector : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 5.0f);
+
+        DrawArc(3, 45, Color.green);
     }
 
     private void DrawCapsule(Vector3 p1, Vector3 p2, float radius, Color color)
@@ -101,4 +103,25 @@ public class TargetDetector : MonoBehaviour
         Gizmos.DrawLine(p1 + transform.right * radius, p2 + transform.right * radius);
         Gizmos.DrawLine(p1 - transform.right * radius, p2 - transform.right * radius);
     }
+
+    private void DrawArc(float radius, float angle, Color color)
+    {
+        Gizmos.color = color;
+        Vector3 left = Quaternion.Euler(0.0f, -angle / 2.0f, 0.0f) * transform.forward;
+        Vector3 right = Quaternion.Euler(0.0f, angle / 2.0f, 0.0f) * transform.forward;
+        int segments = 10;
+        Vector3 prev = transform.position + radius * left;
+        for (int i = 0; i < segments; i++)
+        {
+            float ratio = (float)(i + 1) / segments;
+            float theta = Mathf.Lerp(-angle / 2.0f, angle / 2.0f, ratio);
+            Vector3 next = transform.position +
+                           Quaternion.Euler(0f, theta, 0f) * transform.forward * radius;
+            Gizmos.DrawLine(prev, next);
+            prev = next;
+        }
+        Gizmos.DrawLine(transform.position, transform.position + left * radius);
+        Gizmos.DrawLine(transform.position, transform.position + right * radius);
+    }
+
 }

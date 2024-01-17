@@ -1,0 +1,14 @@
+C:\Users\USER\Downloads\CSharp\GenericExample\bin\Debug\net6.0\GenericExample.exe
+C:\Users\USER\Downloads\CSharp\GenericExample\bin\Debug\net6.0\GenericExample.deps.json
+C:\Users\USER\Downloads\CSharp\GenericExample\bin\Debug\net6.0\GenericExample.runtimeconfig.json
+C:\Users\USER\Downloads\CSharp\GenericExample\bin\Debug\net6.0\GenericExample.dll
+C:\Users\USER\Downloads\CSharp\GenericExample\bin\Debug\net6.0\GenericExample.pdb
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.AssemblyInfoInputs.cache
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.AssemblyInfo.cs
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.csproj.CoreCompileInputs.cache
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.dll
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\refint\GenericExample.dll
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.pdb
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\GenericExample.genruntimeconfig.cache
+C:\Users\USER\Downloads\CSharp\GenericExample\obj\Debug\net6.0\ref\GenericExample.dll

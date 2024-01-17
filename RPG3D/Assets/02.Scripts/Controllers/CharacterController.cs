@@ -1,17 +1,58 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Controllers
 {
     public class CharacterController : MonoBehaviour
     {
+        public float hp
+        {
+            get
+            {
+                return _hp;
+            }
+            set
+            {
+                value = Mathf.Clamp(value, 0, _hpMax);
+
+                if (_hp == value)
+                    return;
+             
+                _hp = value;
+                //onHpChanged(value);
+                //onHpChanged.Invoke(value);
+                onHpChanged?.Invoke(value); // null check 연산자 : 왼쪽 피연산자가 null 일경우 null 반환
+            }
+        }
+
+        public float hpMax
+        {
+            get
+            {
+                return _hpMax;
+            }
+        }
+
         [SerializeField] float _speed;
         Vector3 _velocity;
         Vector3 _accel;
         Rigidbody _rigidbody;
+        float _hp;
+        float _hpMax = 100;
+        //public delegate void OnHpChangedHandler(float value); // 대리자 타입 정의
+        //public event OnHpChangedHandler onHpChanged; // 대리자 변수 선언
+        // event 한정자 : 외부 클래스에서는 이 대리자를 += 혹은 -= 의 왼쪽에만 사용할 수 있도록 제한하는 한정자
+        public event Action<float> onHpChanged;
+
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            
         }
 
         private void Update()
