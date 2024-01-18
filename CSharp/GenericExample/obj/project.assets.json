@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\Downloads\\CSharp\\GenericExample\\GenericExample.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\GenericExample\\GenericExample.csproj",
       "projectName": "GenericExample",
-      "projectPath": "C:\\Users\\USER\\Downloads\\CSharp\\GenericExample\\GenericExample.csproj",
+      "projectPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\GenericExample\\GenericExample.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\Downloads\\CSharp\\GenericExample\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\GenericExample\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

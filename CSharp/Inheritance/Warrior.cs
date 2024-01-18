@@ -16,9 +16,9 @@
             Console.WriteLine($"{NickName} (이)가 한쪽 입고리를 올리며 웃는다 ...");
         }
 
-        public override void Attack()
+        public override void Attack(IHp target)
         {
-            base.Attack(); // base 키워드 : 기반 클래스 멤버에 접근하는 키워드.
+            base.Attack(target); // base 키워드 : 기반 클래스 멤버에 접근하는 키워드.
             Console.WriteLine($"[{NickName}] : 하이얍 !");
         }
     }

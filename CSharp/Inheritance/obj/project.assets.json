@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\Downloads\\CSharp\\Inheritance\\Inheritance.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\Inheritance\\Inheritance.csproj",
       "projectName": "Inheritance",
-      "projectPath": "C:\\Users\\USER\\Downloads\\CSharp\\Inheritance\\Inheritance.csproj",
+      "projectPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\Inheritance\\Inheritance.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\Downloads\\CSharp\\Inheritance\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\Inheritance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

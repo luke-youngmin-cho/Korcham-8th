@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\Downloads\\CSharp\\CollisionConcept\\CollisionConcept.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\CollisionConcept\\CollisionConcept.csproj",
       "projectName": "CollisionConcept",
-      "projectPath": "C:\\Users\\USER\\Downloads\\CSharp\\CollisionConcept\\CollisionConcept.csproj",
+      "projectPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\CollisionConcept\\CollisionConcept.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\Downloads\\CSharp\\CollisionConcept\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Documents\\GitHub\\Korcham-8th\\CSharp\\CollisionConcept\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -3,9 +3,12 @@ using UnityEngine;
 
 namespace RPG.Controllers
 {
-    public class CharacterController : MonoBehaviour
+    public abstract class CharacterController : MonoBehaviour, IHp
     {
-        public float hp
+        public virtual float horizontal { get; set; }
+        public virtual float vertical { get; set; }
+
+        public float hpValue
         {
             get
             {
@@ -19,19 +22,19 @@ namespace RPG.Controllers
                     return;
              
                 _hp = value;
+
+                if (value <= 0)
+                    onHpMin?.Invoke();
+                else if (value >= _hpMax)
+                    onHpMax?.Invoke();
+
                 //onHpChanged(value);
                 //onHpChanged.Invoke(value);
                 onHpChanged?.Invoke(value); // null check 연산자 : 왼쪽 피연산자가 null 일경우 null 반환
             }
         }
 
-        public float hpMax
-        {
-            get
-            {
-                return _hpMax;
-            }
-        }
+        public float hpMax => _hpMax;
 
         [SerializeField] float _speed;
         Vector3 _velocity;
@@ -43,7 +46,10 @@ namespace RPG.Controllers
         //public event OnHpChangedHandler onHpChanged; // 대리자 변수 선언
         // event 한정자 : 외부 클래스에서는 이 대리자를 += 혹은 -= 의 왼쪽에만 사용할 수 있도록 제한하는 한정자
         public event Action<float> onHpChanged;
-
+        public event Action<float> onHpDepleted;
+        public event Action<float> onHpRecovered;
+        public event Action onHpMin;
+        public event Action onHpMax;
 
         private void Awake()
         {
@@ -55,15 +61,11 @@ namespace RPG.Controllers
             
         }
 
-        private void Update()
+        // protected 접근제한자 : 상속받은 자식 클래스만 접근 가능함.
+        protected virtual void Update()
         {
-            _velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"))
+            _velocity = new Vector3(horizontal, 0f, vertical)
                             .normalized * _speed;
-
-            if (Input.GetKeyDown(KeyCode.Space) )
-            {
-                Jump();
-            }
         }
 
         // 가속도 = 속도 / 시간
@@ -117,6 +119,18 @@ namespace RPG.Controllers
         private void Jump()
         {
             _rigidbody.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
+        }
+
+        public void DepleteHp(float amount)
+        {
+            hpValue -= amount;
+            onHpDepleted?.Invoke(amount);
+        }
+
+        public void RecoverHp(float amount)
+        {
+            hpValue += amount;
+            onHpRecovered?.Invoke(amount);
         }
     }
 }

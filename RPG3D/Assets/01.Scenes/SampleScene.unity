@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 1608358003}
-  _controller: {fileID: 0}
+  _controller: {fileID: 650209390}
 --- !u!114 &192885512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +801,8 @@ GameObject:
   - component: {fileID: 650209388}
   - component: {fileID: 650209387}
   - component: {fileID: 650209389}
-  - component: {fileID: 650209386}
+  - component: {fileID: 650209390}
+  - component: {fileID: 650209391}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -809,19 +810,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &650209386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650209385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a800bfcbeb00984b8242e619395de73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 2
 --- !u!136 &650209387
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -889,6 +877,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &650209390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650209385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb66227279fe2a146899b444d4b608c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 2
+--- !u!114 &650209391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650209385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f27bf034d57d284d8ea7902466dca55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectRangeGain: 2
 --- !u!1 &754909664
 GameObject:
   m_ObjectHideFlags: 0
