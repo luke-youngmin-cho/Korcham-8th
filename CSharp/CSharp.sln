@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstProject", "FirstProjec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollisionConcept", "CollisionConcept\CollisionConcept.csproj", "{D9F70B12-6025-4871-9784-64B9E0AB73E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericExample", "GenericExample\GenericExample.csproj", "{D305BA92-B0CB-4236-80B0-D70C788D043C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericExample", "GenericExample\GenericExample.csproj", "{D305BA92-B0CB-4236-80B0-D70C788D043C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{389F0BE9-C388-43A7-995B-9DF6B305197E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inheritance", "Inheritance\Inheritance.csproj", "{389F0BE9-C388-43A7-995B-9DF6B305197E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{0B68A557-8E5B-44F2-9006-3B1E895592DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{389F0BE9-C388-43A7-995B-9DF6B305197E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{389F0BE9-C388-43A7-995B-9DF6B305197E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{389F0BE9-C388-43A7-995B-9DF6B305197E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B68A557-8E5B-44F2-9006-3B1E895592DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B68A557-8E5B-44F2-9006-3B1E895592DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B68A557-8E5B-44F2-9006-3B1E895592DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B68A557-8E5B-44F2-9006-3B1E895592DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
