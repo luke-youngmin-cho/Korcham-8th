@@ -1,8 +1,9 @@
 ﻿namespace Collections
 {
-    internal class DynamicArray
+    internal class DynamicArray<T>
+        where T : IEquatable<T>
     {
-        public object this[int index]
+        public T this[int index]
         {
             get
             {
@@ -25,10 +26,10 @@
         public int Capacity => _items.Length;
 
         private const int DEFAULT_SIZE = 4;
-        private object[] _items = new object[DEFAULT_SIZE];
+        private T[] _items = new T[DEFAULT_SIZE];
         private int _count;
 
-        public void Add(object item)
+        public void Add(T item)
         {
             // if (1. 아이템을 추가할 공간 (Capacity) 이 충분한지 확인)
             // {
@@ -40,14 +41,14 @@
 
             if (_count >= _items.Length)
             {
-                object[] tmp = new object[_count * 2];
+                T[] tmp = new T[_count * 2];
                 Array.Copy(_items, tmp, _count);
                 _items = tmp;
             }
             _items[_count++] = item;
         }
 
-        public int FindIndex(Predicate<object> match)
+        public int FindIndex(Predicate<T> match)
         {
             // for 문을 돌린다 
             // {
@@ -64,14 +65,14 @@
             return -1;
         }
 
-        public object Find(Predicate<object> match)
+        public T Find(Predicate<T> match)
         {
             for (int i = 0; i < _count; i++)
             {
                 if (match.Invoke(_items[i]))
                     return _items[i];
             }
-            return default(int);
+            return default(T);
         }
 
         public void RemoveAt(int index)
@@ -87,7 +88,7 @@
             _count--;
         }
 
-        public bool Remove(object item)
+        public bool Remove(T item)
         {
             int index = FindIndex(x => x.Equals(item));
 
