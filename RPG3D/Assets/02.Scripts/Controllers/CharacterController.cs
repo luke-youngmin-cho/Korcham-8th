@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace RPG.Controllers
@@ -131,6 +132,30 @@ namespace RPG.Controllers
         {
             hpValue += amount;
             onHpRecovered?.Invoke(amount);
+        }
+
+        public void Test()
+        {
+            IEnumerator enumerator = C_Test();
+            StartCoroutine(enumerator);
+        }
+
+        IEnumerator C_Test()
+        {
+            int count = 5;
+            while (count > 0)
+            {
+                count--;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(5);
+
+            Debug.Log("Passed 5 seconds");
+
+            yield return new WaitForEndOfFrame();
+
+            Debug.Log("Finished frame...");
         }
     }
 }

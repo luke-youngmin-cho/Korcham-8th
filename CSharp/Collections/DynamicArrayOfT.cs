@@ -1,6 +1,8 @@
-﻿namespace Collections
+﻿using System.Collections;
+
+namespace Collections
 {
-    internal class DynamicArray<T>
+    internal class DynamicArray<T> : IEnumerable<T>
         where T : IEquatable<T>
     {
         public T this[int index]
@@ -99,6 +101,64 @@
             }
 
             return false;
+        }
+
+        // 책 읽어주는자 데려오기
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        // inner structure ( 멤버 구조체 )
+        // 반복자, 반복기 ( 책 읽어주는자 )
+        public struct Enumerator : IEnumerator<T>
+        {
+            public Enumerator(DynamicArray<T> data)
+            {
+                _data = data; // 책 읽는자에게 책 쥐어주기
+                _index = -1; // 책 표지 덮은상태
+            }
+
+            public T Current => _data[_index]; // 현재 페이지 읽기
+
+            object IEnumerator.Current => _data[_index];
+
+            private DynamicArray<T> _data; // 책
+            private int _index; // 책의 현재 페이지
+
+
+            public void Dispose()
+            {
+            }
+
+            /// <summary>
+            /// 다음페이지로 넘기기 시도
+            /// </summary>
+            /// <returns> true : 다음페이지로 넘어감. false : 다음페이지 없음 </returns>
+            public bool MoveNext()
+            {
+                // 넘길수있는 다음페이지가 있으면 
+                if (_index < _data.Count - 1)
+                {
+                    ++_index; // 다음 페이지로 넘김
+                    return true;
+                }
+
+                return false;
+            }
+
+            /// <summary>
+            /// 책 덮기
+            /// </summary>
+            public void Reset()
+            {
+                _index = -1;
+            }
         }
     }
 }

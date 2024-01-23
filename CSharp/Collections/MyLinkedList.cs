@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,39 +7,41 @@ using System.Threading.Tasks;
 
 namespace Collections
 {
-    class MyLinkedListNode
+    class MyLinkedListNode<T>
+        where T : IEquatable<T>
     {
-        public int Value;
-        public MyLinkedListNode Prev;
-        public MyLinkedListNode Next;
+        public T Value;
+        public MyLinkedListNode<T> Prev;
+        public MyLinkedListNode<T> Next;
 
-        public MyLinkedListNode(int value)
+        public MyLinkedListNode(T value)
         {
             this.Value = value;
         }
     }
 
-    internal class MyLinkedList
+    internal class MyLinkedList<T> : IEnumerable<T>
+        where T : IEquatable<T>
     {
-        public MyLinkedListNode First => _first;
+        public MyLinkedListNode<T> First => _first;
 
-        public MyLinkedListNode Last => _last;
+        public MyLinkedListNode<T> Last => _last;
 
         public int Count => _count;
 
 
-        private MyLinkedListNode _first;
-        private MyLinkedListNode _last;
+        private MyLinkedListNode<T> _first;
+        private MyLinkedListNode<T> _last;
         private int _count;
 
 
-        public MyLinkedListNode Find(Predicate<int> match)
+        public MyLinkedListNode<T> Find(Predicate<T> match)
         {
             // While 문에서 First 부터 탐색 시작 ~ 현재 탐색중인 노드의 다음노드가 없을때 까지
             // 순회중에 조건에 맞는 노드 찾으면 해당 노드반환
             // 못찾았으면 null 반환
 
-            MyLinkedListNode tmp = _first;
+            MyLinkedListNode<T> tmp = _first;
             while (tmp != null)
             {
                 if (match.Invoke(tmp.Value))
@@ -50,9 +53,9 @@ namespace Collections
             return null;
         }
 
-        public MyLinkedListNode FindLast(Predicate<int> match)
+        public MyLinkedListNode<T> FindLast(Predicate<T> match)
         {
-            MyLinkedListNode tmp = _last;
+            MyLinkedListNode<T> tmp = _last;
             while (tmp != null)
             {
                 if (match.Invoke(tmp.Value))
@@ -64,7 +67,7 @@ namespace Collections
             return null;
         }
 
-        public void AddFirst(int value)
+        public void AddFirst(T value)
         {
             // value 값의 새 노드를 만든다.
             // if ( first 가 있음 )
@@ -76,7 +79,7 @@ namespace Collections
             // first 를 새 노드로 갱신 
             // count++
 
-            MyLinkedListNode tmp = new MyLinkedListNode(value);
+            MyLinkedListNode<T> tmp = new MyLinkedListNode<T>(value);
 
             if (_first != null)
             {
@@ -92,7 +95,7 @@ namespace Collections
             _count++;
         }
 
-        public void AddLast(int value)
+        public void AddLast(T value)
         {
             // value 값의 새 노드를 만든다.
             // if ( last 가 있음 )
@@ -104,7 +107,7 @@ namespace Collections
             // last 를 새 노드로 갱신 
             // count++
 
-            MyLinkedListNode tmp = new MyLinkedListNode(value);
+            MyLinkedListNode<T> tmp = new MyLinkedListNode<T>(value);
 
             if (_last != null)
             {
@@ -120,7 +123,7 @@ namespace Collections
             _count++;
         }
 
-        public void AddBefore(MyLinkedListNode node, int value)
+        public void AddBefore(MyLinkedListNode<T> node, T value)
         {
             // 새 노드를 만든다.
             // if (기준노드.Prev 가 있으면)
@@ -137,7 +140,7 @@ namespace Collections
             // 새 노드.Next = 기준 노드
             // count++
 
-            MyLinkedListNode tmp = new MyLinkedListNode(value);
+            MyLinkedListNode<T> tmp = new MyLinkedListNode<T>(value);
             if (node.Prev != null)
             {
                 node.Prev.Next = tmp;
@@ -154,7 +157,7 @@ namespace Collections
         }
 
 
-        public void AddAfter(MyLinkedListNode node, int value)
+        public void AddAfter(MyLinkedListNode<T> node, T value)
         {
             // 새 노드를 만든다.
             // if (기준노드.Next 가 있으면)
@@ -171,7 +174,7 @@ namespace Collections
             // 새 노드.Prev = 기준 노드
             // count++
 
-            MyLinkedListNode tmp = new MyLinkedListNode(value);
+            MyLinkedListNode<T> tmp = new MyLinkedListNode<T>(value);
             if (node.Next != null)
             {
                 node.Next.Prev = tmp;
@@ -187,17 +190,17 @@ namespace Collections
             _count++;
         }
 
-        public bool Remove(int value)
+        public bool Remove(T value)
         {
-            return Remove(Find(x => x == value));
+            return Remove(Find(x => x.Equals(value)));
         }
 
-        public bool RemoveLast(int value)
+        public bool RemoveLast(T value)
         {
-            return Remove(FindLast(x => x == value));
+            return Remove(FindLast(x => x.Equals(value)));
         }
 
-        public bool Remove(MyLinkedListNode node)
+        public bool Remove(MyLinkedListNode<T> node)
         {
              // if node 가 null 
              // return false
@@ -230,6 +233,55 @@ namespace Collections
 
             _count--;
             return true;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        public struct Enumerator : IEnumerator<T>
+        {
+            public Enumerator(MyLinkedList<T> list)
+            {
+                _list = list;
+                _node = list._first;
+                _current = default(T);
+            }
+
+
+            public T Current => _current;
+
+            object IEnumerator.Current => _current;
+
+            private MyLinkedList<T> _list;
+            private MyLinkedListNode<T> _node;
+            private T _current;
+
+            public void Dispose()
+            {
+            }
+
+            public bool MoveNext()
+            {
+                if (_node == null)
+                    return false;
+
+                _current = _node.Value;
+                _node = _node.Next;
+                return true;
+            }
+
+            public void Reset()
+            {
+                _node = _list._first;
+                _current = default(T);
+            }
         }
     }
 }
