@@ -1,5 +1,6 @@
 ﻿using System.Collections; // C# 의 object 타입 기반의 자료구조들을 포함하는 namespace
 using System.Collections.Generic; // C# 의 generic 타입 기반의 자료구조들을 포함하는 namespace
+using KeyValurPair = System.Collections.Generic.KeyValuePair;
 
 namespace Collections
 {
@@ -137,6 +138,27 @@ namespace Collections
                 Console.WriteLine($"철수의 점수는 : {value}");
             }
 
+            gradeTable.Add("철수", 90);
+            gradeTable.Add("영희", 70);
+            foreach (var item in gradeTable)
+            {
+                Console.WriteLine($"{item.Key} 의 점수 : {item.Value}");
+            }
+
+            Dictionary<ulong, string> nickNames = new Dictionary<ulong, string>();
+            nickNames.Add(12309213123, "철수");
+            nickNames.Add(42984712894, "영희");
+            foreach (System.Collections.Generic.KeyValuePair<ulong, string> item in nickNames)
+            {
+            }
+
+            foreach (var keys in nickNames.Keys)
+            {
+            }
+
+            foreach (var values in nickNames.Values)
+            {
+            }
         }
     }
 

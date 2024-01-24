@@ -138,6 +138,7 @@ namespace RPG.Controllers
         {
             IEnumerator enumerator = C_Test();
             StartCoroutine(enumerator);
+            StartCoroutine(new Enumerator());
         }
 
         IEnumerator C_Test()
@@ -156,6 +157,21 @@ namespace RPG.Controllers
             yield return new WaitForEndOfFrame();
 
             Debug.Log("Finished frame...");
+        }
+
+        struct Enumerator : IEnumerator
+        {
+            public object Current => throw new NotImplementedException();
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

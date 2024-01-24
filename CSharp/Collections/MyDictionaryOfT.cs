@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace Collections
 {
@@ -54,8 +49,8 @@ namespace Collections
 
         public void Add(TKey key, TValue value)
         {
-            int hashCode = key.GetHashCode();
-            int index = hashCode % DEFAULT_SIZE;
+            uint hashCode = (uint)key.GetHashCode();
+            uint index = hashCode % DEFAULT_SIZE;
 
             Entry entry = _entries[index];
             if (entry == null)
@@ -81,8 +76,8 @@ namespace Collections
 
         private Entry GetEntry(TKey key)
         {
-            int hashCode = key.GetHashCode();
-            int index = hashCode % DEFAULT_SIZE;
+            uint hashCode = (uint)key.GetHashCode();
+            uint index = hashCode % DEFAULT_SIZE;
 
             Entry entry = _entries[index];
 
@@ -105,8 +100,8 @@ namespace Collections
 
         public TValue Find(TKey key)
         {
-            int hashCode = key.GetHashCode();
-            int index = hashCode % DEFAULT_SIZE;
+            uint hashCode = (uint)key.GetHashCode();
+            uint index = hashCode % DEFAULT_SIZE;
 
             Entry entry = _entries[index];
 
@@ -129,8 +124,8 @@ namespace Collections
         
         public bool TryGetValue(TKey key, out TValue value)
         {
-            int hashCode = key.GetHashCode();
-            int index = hashCode % DEFAULT_SIZE;
+            uint hashCode = (uint)key.GetHashCode();
+            uint index = hashCode % DEFAULT_SIZE;
 
             Entry entry = _entries[index];
 
@@ -155,8 +150,8 @@ namespace Collections
 
         public bool Remove(TKey key)
         {
-            int hashCode = key.GetHashCode();
-            int index = hashCode % DEFAULT_SIZE;
+            uint hashCode = (uint)key.GetHashCode();
+            uint index = hashCode % DEFAULT_SIZE;
 
             Entry entry = _entries[index];
             Entry prev = entry;
@@ -186,12 +181,12 @@ namespace Collections
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new Enumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new Enumerator(this);
         }
 
         public struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
@@ -199,13 +194,14 @@ namespace Collections
             public Enumerator(MyDictionary<TKey, TValue> dictionary)
             {
                 _dictionary = dictionary;
-                _index = 0;
+                _validIndex = 0;
+                _entry = null;
                 _current = default;
             }
 
-            public KeyValuePair<TKey, TValue> Current => throw new NotImplementedException();
+            public KeyValuePair<TKey, TValue> Current => _current;
 
-            object IEnumerator.Current => throw new NotImplementedException();
+            object IEnumerator.Current => _current;
 
             private MyDictionary<TKey, TValue> _dictionary;
             private int _validIndex; // 버킷 배열의 인덱스
@@ -222,7 +218,6 @@ namespace Collections
                 int index = _validIndex;
                 while (index < DEFAULT_SIZE)
                 {
-                    // 
                     if (_entry != null)
                     {
                         if (_entry.Next != null)
@@ -245,6 +240,7 @@ namespace Collections
                         return true;
                     }
 
+                    _entry = null;
                     ++index;
                 }
 
@@ -253,7 +249,9 @@ namespace Collections
 
             public void Reset()
             {
-                throw new NotImplementedException();
+                _validIndex = 0;
+                _entry = null;
+                _current = default;
             }
         }
     }
