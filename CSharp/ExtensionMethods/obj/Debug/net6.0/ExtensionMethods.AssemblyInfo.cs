@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("SortAlgorithms.cs")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("ExtensionMethods")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("SortAlgorithms.cs")]
-[assembly: System.Reflection.AssemblyTitleAttribute("SortAlgorithms.cs")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20a641529673a96623ea24ab9f3f9fa49e355061")]
+[assembly: System.Reflection.AssemblyProductAttribute("ExtensionMethods")]
+[assembly: System.Reflection.AssemblyTitleAttribute("ExtensionMethods")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment 클래스에서 생성되었습니다.

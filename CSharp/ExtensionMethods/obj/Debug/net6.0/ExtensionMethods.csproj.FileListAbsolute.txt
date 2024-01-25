@@ -1,0 +1,15 @@
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\bin\Debug\net6.0\ExtensionMethods.exe
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\bin\Debug\net6.0\ExtensionMethods.deps.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\bin\Debug\net6.0\ExtensionMethods.runtimeconfig.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\bin\Debug\net6.0\ExtensionMethods.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\bin\Debug\net6.0\ExtensionMethods.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.AssemblyInfoInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.AssemblyInfo.cs
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.sourcelink.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\refint\ExtensionMethods.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ExtensionMethods.genruntimeconfig.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\ExtensionMethods\obj\Debug\net6.0\ref\ExtensionMethods.dll

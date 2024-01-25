@@ -131,6 +131,7 @@ namespace Collections
 
             #endregion
 
+            #region Dictionary (해시 테이블)
             MyDictionary<string, int> gradeTable = new MyDictionary<string, int>();
             int value;
             if (gradeTable.TryGetValue("철수", out value))
@@ -159,6 +160,38 @@ namespace Collections
             foreach (var values in nickNames.Values)
             {
             }
+            #endregion
+
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(0);
+            queue.Enqueue(5);
+            queue.Dequeue();
+            queue.Peek();
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(0);
+            stack.Push(5);
+            stack.Pop();
+            stack.Peek();
+
+            Random random = new Random();
+            List<int> list = new List<int>(Enumerable.Repeat(0, 20)
+                                                     .Select(x => random.Next(0, 10)));
+
+            var filtered =
+                from item in list
+                where item > 5
+                orderby item descending
+                select item;
+
+            foreach (var item in filtered)
+            {
+                Console.WriteLine(item);
+            }
+
+            filtered =
+                list.Where(item => item > 5)
+                    .OrderByDescending(item => item);
         }
     }
 

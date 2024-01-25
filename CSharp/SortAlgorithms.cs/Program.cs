@@ -22,7 +22,7 @@ namespace SortAlgorithms.cs
             //ArraySort.RecursiveMergeSort(arr); // 1000 만개, 1800 ms / 중복이 거의 없을때 2200 ms
             //ArraySort.MergeSort(arr); // 1000 만개, 1750 ms / 중복이 거의 없을때 2200 ms
             ArraySort.RecursiveQuickSort(arr); // 1000만개 ??? / 중복이 거의 없을때 1800 ms
-            //ArraySort.QuickSort(arr); // 1000 만개 146000 , 중복이 거의 없을때 1700 ms
+            //ArraySort.QuickSort(arr); // 1000 만개 146000 ms , 중복이 거의 없을때 1700 ms
             //ArraySort.HeapSort(arr); // 1000 만개 2500 ms 중복이 거의 없을때 3300 ms
 
             sw.Stop();
