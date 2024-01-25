@@ -1,0 +1,15 @@
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\bin\Debug\net6.0\SortAlgorithms.cs.exe
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\bin\Debug\net6.0\SortAlgorithms.cs.deps.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\bin\Debug\net6.0\SortAlgorithms.cs.runtimeconfig.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\bin\Debug\net6.0\SortAlgorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\bin\Debug\net6.0\SortAlgorithms.cs.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.AssemblyInfoInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.AssemblyInfo.cs
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.sourcelink.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\refint\SortAlgorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\SortAlgorithms.cs.genruntimeconfig.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\SortAlgorithms.cs\obj\Debug\net6.0\ref\SortAlgorithms.cs.dll
