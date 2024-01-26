@@ -8,6 +8,7 @@ namespace RPG.Controllers
     {
         public virtual float horizontal { get; set; }
         public virtual float vertical { get; set; }
+        public virtual float speedGain { get; set; }
 
         public float hpValue
         {
@@ -37,10 +38,10 @@ namespace RPG.Controllers
 
         public float hpMax => _hpMax;
 
-        [SerializeField] float _speed;
         Vector3 _velocity;
         Vector3 _accel;
         Rigidbody _rigidbody;
+        Animator _animator;
         float _hp;
         float _hpMax = 100;
         //public delegate void OnHpChangedHandler(float value); // 대리자 타입 정의
@@ -55,9 +56,10 @@ namespace RPG.Controllers
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _animator = GetComponent<Animator>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             
         }
@@ -66,7 +68,9 @@ namespace RPG.Controllers
         protected virtual void Update()
         {
             _velocity = new Vector3(horizontal, 0f, vertical)
-                            .normalized * _speed;
+                            .normalized * speedGain;
+            _animator.SetFloat("velocityX", _velocity.x);
+            _animator.SetFloat("velocityZ", _velocity.z);
         }
 
         // 가속도 = 속도 / 시간
@@ -133,6 +137,10 @@ namespace RPG.Controllers
             hpValue += amount;
             onHpRecovered?.Invoke(amount);
         }
+
+        private void FootR() { }
+        private void FootL() { }
+
 
         public void Test()
         {
