@@ -291,20 +291,20 @@
         // 부모가 자식을 탐색해서 스왑하면서 내려가는 형태의 알고리즘
         public static void SIFT_Down(int[] arr, int end, int current)
         {
-            int parent = (current - 1) / 2;
+            int child = current * 2 + 1; // 일단 왼쪽자식
 
-            while (current <= end)
+            while (child <= end)
             {
                 // 오른쪽이 더 크면 스왑 대상을 오른쪽으로 바꿈
-                if (current + 1 <= end &&
-                    arr[current] < arr[current + 1])
-                    current = current + 1;
+                if (child + 1 <= end &&
+                    arr[child] < arr[child + 1])
+                    child = child + 1;
 
-                if (arr[current] > arr[parent])
+                if (arr[child] > arr[current])
                 {
-                    Swap(ref arr[current], ref arr[parent]);
-                    parent = current;
-                    current = parent * 2 + 1;
+                    Swap(ref arr[child], ref arr[current]);
+                    current = child;
+                    child = current * 2 + 1;
                 }
                 else
                 {
