@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb63fb9fee9a3408795a510d4e7907, type: 3}
+  m_Name: TwoHandedSword
+  m_EditorClassIdentifier: 
+  id: 10001
+  description: "\uBB34\uAC70\uC6B4 \uC591\uC190\uAC80\uC774\uB2E4."
+  levelRequired: 1
+  numMax: 1
+  icon: {fileID: 0}
+  model: {fileID: 0}

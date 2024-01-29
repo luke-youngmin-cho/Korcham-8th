@@ -1,19 +1,19 @@
-using RPG.FSM;
 using UnityEngine;
+using RPG.Animations;
 using System.Collections.Generic;
 
 namespace RPG.Controllers
 {
     public class PlayerController : CharacterController
     {
-        private StateMachine _machine;
-
         protected override void Start()
         {
             base.Start();
-            _machine = new StateMachine(this, StateMachineSettings.GetPlayerStates());
 
-            _machine.current = State.Move;
+            inputCommmands = new Dictionary<State, bool>()
+            {
+                { State.Jump, false},
+            };
         }
 
         protected override void Update()
@@ -22,19 +22,11 @@ namespace RPG.Controllers
             vertical = Input.GetAxis("Vertical");
             speedGain = Input.GetKey(KeyCode.LeftShift) ? 2 : 1;
 
+            inputCommmands[State.Jump] = Input.GetKeyDown(KeyCode.Space);
+            inputCommmands[State.Attack] = isAttacking == false &&
+                                           Input.GetMouseButtonDown(0);
+
             base.Update();
-            
-            _machine.OnUpdate();
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _machine.ChangeState(State.Jump);
-            }
-        }
-
-        private void LateUpdate()
-        {
-            _machine.OnLateUpdate();
         }
     }
 }

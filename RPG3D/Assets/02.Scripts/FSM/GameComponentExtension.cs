@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.FSM
+namespace RPG
 {
     public static class GameComponentExtension
     {

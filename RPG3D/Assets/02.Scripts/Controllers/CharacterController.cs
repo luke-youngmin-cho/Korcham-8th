@@ -1,5 +1,7 @@
+using RPG.Animations;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Controllers
@@ -41,9 +43,15 @@ namespace RPG.Controllers
         Vector3 _velocity;
         Vector3 _accel;
         Rigidbody _rigidbody;
-        Animator _animator;
+        protected Animator animator;
         float _hp;
         float _hpMax = 100;
+
+        public Dictionary<State, bool> inputCommmands;
+        public int weaponType;
+        public bool isAttacking;
+        public Coroutine comboStackResetCoroutine;
+
         //public delegate void OnHpChangedHandler(float value); // 대리자 타입 정의
         //public event OnHpChangedHandler onHpChanged; // 대리자 변수 선언
         // event 한정자 : 외부 클래스에서는 이 대리자를 += 혹은 -= 의 왼쪽에만 사용할 수 있도록 제한하는 한정자
@@ -53,15 +61,16 @@ namespace RPG.Controllers
         public event Action onHpMin;
         public event Action onHpMax;
 
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
         }
 
         protected virtual void Start()
         {
-            
+            InitAnimatorBehaviours();
         }
 
         // protected 접근제한자 : 상속받은 자식 클래스만 접근 가능함.
@@ -69,8 +78,8 @@ namespace RPG.Controllers
         {
             _velocity = new Vector3(horizontal, 0f, vertical)
                             .normalized * speedGain;
-            _animator.SetFloat("velocityX", _velocity.x);
-            _animator.SetFloat("velocityZ", _velocity.z);
+            animator.SetFloat("velocityX", _velocity.x);
+            animator.SetFloat("velocityZ", _velocity.z);
         }
 
         // 가속도 = 속도 / 시간
@@ -90,6 +99,15 @@ namespace RPG.Controllers
             //    _velocity += _accel * Time.fixedDeltaTime;
             //    _accel += Physics.gravity * Time.fixedDeltaTime; // 중력가속도
             //}
+        }
+
+        protected virtual void InitAnimatorBehaviours()
+        {
+            var behaviours = animator.GetBehaviours<StateMachineBehaviourBase>();
+            foreach (var behaviour in behaviours)
+            {
+                behaviour.Init(this);
+            }
         }
 
         private bool IsGrounded()
@@ -141,6 +159,10 @@ namespace RPG.Controllers
         private void FootR() { }
         private void FootL() { }
 
+        private void Hit() 
+        {
+            isAttacking = false;
+        }
 
         public void Test()
         {
