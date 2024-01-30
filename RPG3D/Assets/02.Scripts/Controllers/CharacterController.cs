@@ -40,15 +40,48 @@ namespace RPG.Controllers
 
         public float hpMax => _hpMax;
 
+        public Vector3 velocity
+        {
+            get => _velocity;
+            set
+            {
+                _velocity = value;
+            }
+        }
         Vector3 _velocity;
+
+        public Vector3 accel
+        {
+            get => _accel;
+            set
+            {
+                _accel = value;
+            }
+        }
         Vector3 _accel;
+        [SerializeField] private float _slopeAngle = 45.0f;
+        [SerializeField] private float _step = 0.2f;
+        [SerializeField] private float _footHeight = 0.45f;
+        [SerializeField] private LayerMask _groundMask;
         Rigidbody _rigidbody;
         protected Animator animator;
         float _hp;
         float _hpMax = 100;
 
         public Dictionary<State, bool> inputCommmands;
-        public int weaponType;
+        public int weaponType
+        {
+            get => _weaponType;
+            set
+            {
+                if (_weaponType == value)
+                    return;
+
+                _weaponType = value;
+                animator.SetInteger("weapon", value);
+            }
+        }
+        private int _weaponType;
         public bool isAttacking;
         public Coroutine comboStackResetCoroutine;
 
@@ -76,8 +109,9 @@ namespace RPG.Controllers
         // protected 접근제한자 : 상속받은 자식 클래스만 접근 가능함.
         protected virtual void Update()
         {
-            _velocity = new Vector3(horizontal, 0f, vertical)
-                            .normalized * speedGain;
+            if (this.IsGrounded())
+                _velocity = new Vector3(horizontal, 0f, vertical).normalized * speedGain;
+
             animator.SetFloat("velocityX", _velocity.x);
             animator.SetFloat("velocityZ", _velocity.z);
         }
@@ -88,7 +122,7 @@ namespace RPG.Controllers
         {
             // 위치변화 = 속도 * 시간변화
             // 다음위치 = 현재위치 + 위치변화 = 현재위치 + 속도 * 시간변화
-            transform.position += _velocity * Time.fixedDeltaTime;
+            //transform.position += _velocity * Time.fixedDeltaTime;
 
             //if (IsGrounded())
             //{
@@ -99,6 +133,80 @@ namespace RPG.Controllers
             //    _velocity += _accel * Time.fixedDeltaTime;
             //    _accel += Physics.gravity * Time.fixedDeltaTime; // 중력가속도
             //}
+
+            ManualMove();
+        }
+
+        /// <summary>
+        /// 수동 조작시 사용할 움직임
+        /// </summary>
+        private void ManualMove()
+        {
+            if (this.IsGrounded())
+            {
+                _accel.y = 0.0f;
+                _velocity.y = 0.0f;
+                RaycastHit hit;
+                Vector3 expectedRel = Quaternion.LookRotation(transform.forward) * _velocity * Time.fixedDeltaTime;
+                Vector3 expected = transform.position
+                                   + expectedRel;
+
+                Vector3 slopeTop = transform.position
+                                   + Quaternion.AngleAxis(-45, transform.right)
+                                   * Quaternion.LookRotation(transform.forward)
+                                   * _velocity * Time.fixedDeltaTime;
+
+                Vector3 slopeBottom = transform.position
+                                   + Quaternion.AngleAxis(+45, transform.right)
+                                   * Quaternion.LookRotation(transform.forward)
+                                   * _velocity * Time.fixedDeltaTime;
+
+                Debug.Log($"top{slopeTop}. bottom{slopeBottom}");
+
+                // 계단 확인
+                if (Physics.Raycast(expected + Vector3.up * _step,
+                                         Vector3.down,
+                                         out hit,
+                                         _step * 2,
+                                         _groundMask))
+                {
+                    transform.position = hit.point;
+                }
+                // 윗쪽 경사 확인
+                else if (Physics.Linecast(slopeTop, expected, out hit, _groundMask))
+                {
+                    transform.position = hit.point;
+                }
+                // 아랫쪽 경사 확인
+                else if (Physics.Linecast(expected, slopeBottom, out hit, _groundMask))
+                {
+                    transform.position = hit.point;
+                }
+                
+                Debug.DrawLine(slopeTop, expected, hit.collider ? Color.green : Color.red, 2.0f);
+                Debug.DrawLine(expected, slopeBottom, hit.collider ? Color.green : Color.red, 2.0f);
+            }
+            else
+            {
+                _velocity += _accel * Time.fixedDeltaTime;
+                _accel += Physics.gravity * Time.fixedDeltaTime;
+            
+                RaycastHit hit;
+                Vector3 expectedRel = Quaternion.LookRotation(transform.forward) * _velocity * Time.fixedDeltaTime;
+                Vector3 expected = transform.position
+                                   + expectedRel;
+                if (Physics.Linecast(transform.position,
+                                     expected,
+                                     out hit,
+                                     _groundMask))
+                {
+                    transform.position = hit.point;
+                }
+                else
+                {
+                    transform.position += _velocity * Time.fixedDeltaTime;
+                }
+            }
         }
 
         protected virtual void InitAnimatorBehaviours()
@@ -110,15 +218,10 @@ namespace RPG.Controllers
             }
         }
 
-        private bool IsGrounded()
-        {
-            return true;
-        }
-
         // a = v / t
         // F = m * a -> a = F / m
         // I = F * t = m * a * t = m * v -> v = I / m
-        private void AddForce(Vector3 force, ForceMode forceMode)
+        public void AddForce(Vector3 force, ForceMode forceMode)
         {
             switch (forceMode)
             {
@@ -156,6 +259,35 @@ namespace RPG.Controllers
             onHpRecovered?.Invoke(amount);
         }
 
+
+        private void OnAnimatorIK(int layerIndex)
+        {
+            FootIK();
+        }
+
+        private void FootIK()
+        {
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 1);
+            animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 1);
+            Ray ray;
+            RaycastHit hit;
+
+            ray = new Ray(animator.GetIKPosition(AvatarIKGoal.LeftFoot) + Vector3.up * _step, Vector3.down);
+            if (Physics.Raycast(ray, out hit, _step * 2.0f, _groundMask))
+            {
+                animator.SetIKPosition(AvatarIKGoal.LeftFoot, hit.point + Vector3.up * _footHeight);
+            }
+
+            ray = new Ray(animator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up * _step, Vector3.down);
+            if (Physics.Raycast(ray, out hit, _step * 2.0f, _groundMask))
+            {
+                animator.SetIKPosition(AvatarIKGoal.RightFoot, hit.point + Vector3.up * _footHeight);
+            }
+        }
+
+
         private void FootR() { }
         private void FootL() { }
 
@@ -164,44 +296,5 @@ namespace RPG.Controllers
             isAttacking = false;
         }
 
-        public void Test()
-        {
-            IEnumerator enumerator = C_Test();
-            StartCoroutine(enumerator);
-            StartCoroutine(new Enumerator());
-        }
-
-        IEnumerator C_Test()
-        {
-            int count = 5;
-            while (count > 0)
-            {
-                count--;
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(5);
-
-            Debug.Log("Passed 5 seconds");
-
-            yield return new WaitForEndOfFrame();
-
-            Debug.Log("Finished frame...");
-        }
-
-        struct Enumerator : IEnumerator
-        {
-            public object Current => throw new NotImplementedException();
-
-            public bool MoveNext()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Reset()
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

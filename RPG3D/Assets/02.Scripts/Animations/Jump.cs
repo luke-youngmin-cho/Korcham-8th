@@ -9,8 +9,7 @@ namespace RPG.Animations
 {
     public class Jump : StateMachineBehaviourBase
     {
-        private float _force = 5.0f;
-        private Rigidbody _rigidbody;
+        private float _force = 3.0f;
 
         public override void Init(Controllers.CharacterController controller)
         {
@@ -20,21 +19,17 @@ namespace RPG.Animations
             {
                 { State.Fall, (animator) =>
                 {
-                    if (_rigidbody == null)
-                        return false;
-
-                    return _rigidbody.velocity.y <= 0;
-                } }
+                    return controller.velocity.y <= 0;
+                }}
             };
         }
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             base.OnStateEnter(animator, stateInfo, layerIndex);
-            animator.transform.position += Vector3.up * 0.15f;
-            _rigidbody = animator.GetComponent<Rigidbody>();
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z);
-            _rigidbody.AddForce(Vector3.up * _force, ForceMode.Impulse);
+            animator.transform.position += Vector3.up * 0.2f;
+            controller.velocity = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z);
+            controller.AddForce(Vector3.up * _force, ForceMode.Impulse);
         }
     }
 }

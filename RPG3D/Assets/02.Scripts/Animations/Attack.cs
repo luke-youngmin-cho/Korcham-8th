@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEditor;
 
 namespace RPG.Animations
 {
@@ -33,9 +34,10 @@ namespace RPG.Animations
         {
             base.OnStateEnter(animator, stateInfo, layerIndex);
             controller.isAttacking = true;
-            animator.SetInteger("attackComboStack", _attackComboStack);
             _attackComboStack = _attackComboStack < _comboStackLimits[controller.weaponType] ?
                                 _attackComboStack + 1 : 0;
+            animator.SetInteger("attackComboStack", _attackComboStack);
+            
             Debug.Log($"[Attack] : {_attackComboStack}, enter");
 
             if (controller.comboStackResetCoroutine != null)
