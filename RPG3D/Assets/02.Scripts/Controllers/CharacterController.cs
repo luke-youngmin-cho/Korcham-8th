@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.Controllers
 {
@@ -11,6 +12,20 @@ namespace RPG.Controllers
         public virtual float horizontal { get; set; }
         public virtual float vertical { get; set; }
         public virtual float speedGain { get; set; }
+
+        public bool aiOn
+        {
+            get => _aiOn;
+            set
+            {
+                if (_aiOn == value)
+                    return;
+
+                _aiOn = value;
+                agent.enabled = value;
+            }
+        }
+        private bool _aiOn;
 
         public float hpValue
         {
@@ -65,8 +80,11 @@ namespace RPG.Controllers
         [SerializeField] private LayerMask _groundMask;
         Rigidbody _rigidbody;
         protected Animator animator;
+        public NavMeshAgent agent { get; private set; }
+
         float _hp;
         float _hpMax = 100;
+        float _atk = 10.0f;
 
         public Dictionary<State, bool> inputCommmands;
         public int weaponType
@@ -95,10 +113,11 @@ namespace RPG.Controllers
         public event Action onHpMax;
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
+            agent = GetComponent<NavMeshAgent>();
         }
 
         protected virtual void Start()
@@ -124,17 +143,14 @@ namespace RPG.Controllers
             // 다음위치 = 현재위치 + 위치변화 = 현재위치 + 속도 * 시간변화
             //transform.position += _velocity * Time.fixedDeltaTime;
 
-            //if (IsGrounded())
-            //{
-            //
-            //}
-            //else
-            //{
-            //    _velocity += _accel * Time.fixedDeltaTime;
-            //    _accel += Physics.gravity * Time.fixedDeltaTime; // 중력가속도
-            //}
-
-            ManualMove();
+            if (aiOn)
+            {
+                // AutoMove();
+            }
+            else
+            {
+                ManualMove();
+            }
         }
 
         /// <summary>
@@ -163,26 +179,25 @@ namespace RPG.Controllers
 
                 Debug.Log($"top{slopeTop}. bottom{slopeBottom}");
 
-                // 계단 확인
+                // 계단 확인, 윗쪽 경사확인, 아랫쪽 경사확인
                 if (Physics.Raycast(expected + Vector3.up * _step,
-                                         Vector3.down,
-                                         out hit,
-                                         _step * 2,
-                                         _groundMask))
+                                    Vector3.down,
+                                    out hit,
+                                    _step * 2,
+                                    _groundMask) ||
+                    Physics.Linecast(slopeTop, expected, out hit, _groundMask) ||
+                    Physics.Linecast(expected, slopeBottom, out hit, _groundMask))
                 {
-                    transform.position = hit.point;
+                    // NavMesh 확인 
+                    if (NavMesh.SamplePosition(hit.point,
+                                               out NavMeshHit navMeshHit,
+                                               1.0f,
+                                               NavMesh.AllAreas))
+                    {
+                        transform.position = navMeshHit.position;
+                    }
                 }
-                // 윗쪽 경사 확인
-                else if (Physics.Linecast(slopeTop, expected, out hit, _groundMask))
-                {
-                    transform.position = hit.point;
-                }
-                // 아랫쪽 경사 확인
-                else if (Physics.Linecast(expected, slopeBottom, out hit, _groundMask))
-                {
-                    transform.position = hit.point;
-                }
-                
+
                 Debug.DrawLine(slopeTop, expected, hit.collider ? Color.green : Color.red, 2.0f);
                 Debug.DrawLine(expected, slopeBottom, hit.collider ? Color.green : Color.red, 2.0f);
             }
@@ -200,7 +215,14 @@ namespace RPG.Controllers
                                      out hit,
                                      _groundMask))
                 {
-                    transform.position = hit.point;
+                    // NavMesh 확인 
+                    if (NavMesh.SamplePosition(hit.point,
+                                               out NavMeshHit navMeshHit,
+                                               1.0f,
+                                               NavMesh.AllAreas))
+                    {
+                        transform.position = navMeshHit.position;
+                    }
                 }
                 else
                 {
@@ -291,10 +313,30 @@ namespace RPG.Controllers
         private void FootR() { }
         private void FootL() { }
 
-        private void Hit() 
+        private void Hit(AnimationEvent e) 
         {
             isAttacking = false;
-        }
 
+            if (e.objectReferenceParameter is SkillInfo)
+            {
+                SkillInfo skillInfo = (SkillInfo)e.objectReferenceParameter;
+
+                RaycastHit[] hits =
+                Physics.CapsuleCastAll(transform.position + Quaternion.LookRotation(transform.forward) * skillInfo.castingPoint1,
+                                       transform.position + Quaternion.LookRotation(transform.forward) * skillInfo.castingPoint2,
+                                       skillInfo.castingRadius,
+                                       Quaternion.LookRotation(transform.forward) * skillInfo.castingDirection,
+                                       skillInfo.castingMaxDistance,
+                                       skillInfo.castingMask);
+
+                for (int i = 0; i < skillInfo.maxTargets && i < hits.Length; i++)
+                {
+                    if (hits[i].collider.TryGetComponent(out IHp hp))
+                    {
+                        hp.DepleteHp(_atk * skillInfo.damageGain);
+                    }
+                }
+            }
+        }
     }
 }

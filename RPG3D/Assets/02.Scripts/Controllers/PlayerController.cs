@@ -11,7 +11,7 @@ namespace RPG.Controllers
         protected override void Start()
         {
             base.Start();
-
+            aiOn = false;
             inputCommmands = new Dictionary<State, bool>()
             {
                 { State.Jump, false },

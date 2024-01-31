@@ -41,6 +41,11 @@ public class Box : MonoBehaviour, IHp, IInteractable
     public event Action onHpMin;
     public event Action onHpMax;
 
+    private void Awake()
+    {
+        _hp = _hpMax;    
+    }
+
     private void Start()
     {
         onHpMin += () => Destroy(gameObject);
