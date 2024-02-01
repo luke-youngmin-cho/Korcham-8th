@@ -16,7 +16,7 @@ MonoBehaviour:
   castingPoint2: {x: 0, y: 0.7, z: 0.6}
   castingDirection: {x: 0, y: 0, z: 1}
   castingRadius: 0.5
-  castingMaxDistance: 0
+  castingMaxDistance: 0.5
   castingArcAngle: 0
   castingMask:
     serializedVersion: 2

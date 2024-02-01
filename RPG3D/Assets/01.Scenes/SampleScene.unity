@@ -20618,6 +20618,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5080638302047857600}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &881487434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881487436}
+  - component: {fileID: 881487435}
+  m_Layer: 0
+  m_Name: GizmosDrawer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &881487435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881487434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108b38b5b0aaa894d94bf71828f9eb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &881487436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881487434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &893490090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4796409502014238132, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
@@ -48110,8 +48154,9 @@ GameObject:
   - component: {fileID: 2767979739445022987}
   - component: {fileID: 6673598059278969368}
   - component: {fileID: 6673598059278969367}
-  - component: {fileID: 6673598059278969366}
   - component: {fileID: 6673598059278969365}
+  - component: {fileID: 6673598059278969370}
+  - component: {fileID: 6673598059278969369}
   m_Layer: 10
   m_Name: NonPlayer
   m_TagString: Untagged
@@ -49126,7 +49171,7 @@ NavMeshAgent:
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 0.1
+  m_StoppingDistance: 0.8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -49134,26 +49179,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6673598059278969366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334120573209508410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f239c67eee5547e42a8743f5512ed323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slopeAngle: 45
-  _step: 0.2
-  _footHeight: 0.45
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  isAttacking: 0
-  _agentTarget: {fileID: 497121422}
 --- !u!114 &6673598059278969367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49235,6 +49260,47 @@ MonoBehaviour:
   - {fileID: 6570435443447509350}
   - {fileID: 5699100521044182194}
   - {fileID: 5396987017894716733}
+--- !u!114 &6673598059278969369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334120573209508410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f239c67eee5547e42a8743f5512ed323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slopeAngle: 45
+  _step: 0.2
+  _footHeight: 0.1
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  isAttacking: 0
+  _agentTarget: {fileID: 497121422}
+  _seekRadius: 5
+  _seekHeight: 1
+  _seekAngle: 90
+  _seekTargetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _seekMaxDistance: 10
+  _attackRange: 1
+--- !u!114 &6673598059278969370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334120573209508410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5bdf597338f2547aafa5737c4d0089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBusy: 0
 --- !u!114 &6681608969249539884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57216,3 +57282,4 @@ SceneRoots:
   - {fileID: 573251735}
   - {fileID: 1144965130}
   - {fileID: 1423973901}
+  - {fileID: 881487436}

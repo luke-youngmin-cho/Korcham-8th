@@ -76,7 +76,7 @@ namespace RPG.Controllers
         Vector3 _accel;
         [SerializeField] private float _slopeAngle = 45.0f;
         [SerializeField] private float _step = 0.2f;
-        [SerializeField] private float _footHeight = 0.45f;
+        [SerializeField] private float _footHeight = 0.1f;
         [SerializeField] private LayerMask _groundMask;
         Rigidbody _rigidbody;
         protected Animator animator;
@@ -129,7 +129,19 @@ namespace RPG.Controllers
         protected virtual void Update()
         {
             if (this.IsGrounded())
-                _velocity = new Vector3(horizontal, 0f, vertical).normalized * speedGain;
+            {
+                if (_aiOn)
+                {
+                    agent.speed = speedGain;
+                    _velocity = new Vector3(Vector3.Dot(transform.right, agent.velocity),
+                                            0.0f,
+                                            Vector3.Dot(transform.forward, agent.velocity));
+                }   
+                else
+                {
+                    _velocity = new Vector3(horizontal, 0f, vertical).normalized * speedGain;
+                }
+            }
 
             animator.SetFloat("velocityX", _velocity.x);
             animator.SetFloat("velocityZ", _velocity.z);
@@ -176,8 +188,6 @@ namespace RPG.Controllers
                                    + Quaternion.AngleAxis(+45, transform.right)
                                    * Quaternion.LookRotation(transform.forward)
                                    * _velocity * Time.fixedDeltaTime;
-
-                Debug.Log($"top{slopeTop}. bottom{slopeBottom}");
 
                 // 계단 확인, 윗쪽 경사확인, 아랫쪽 경사확인
                 if (Physics.Raycast(expected + Vector3.up * _step,
