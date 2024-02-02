@@ -10,13 +10,22 @@ namespace RPG.Controllers
     {
         [SerializeField] Transform _agentTarget;
 
-        [Header("Behaviours")]
+        [Header("AI Behaviours")]
+        [Header("Seek")]
         [SerializeField] float _seekRadius = 5.0f;
         [SerializeField] float _seekHeight = 1.0f;
         [SerializeField] float _seekAngle = 90.0f;
         [SerializeField] LayerMask _seekTargetMask;
         [SerializeField] float _seekMaxDistance = 10.0f;
+
+        [Header("Attack")]
         [SerializeField] float _attackRange = 1.0f;
+
+        [Header("Patrol")]
+        [SerializeField] float _patrolRadius = 5.0f;
+        [SerializeField] float _patrolIdleTime = 2.0f;
+        [Range(0f, 1f)]
+        [SerializeField] float _patrolIdleRatio = 0.5f;
 
         protected override void Start()
         {
@@ -40,13 +49,10 @@ namespace RPG.Controllers
             // -- After chaining --
             tree.StartBuild()
                 .Sequence()
+                    .Patrol(_patrolRadius, _patrolIdleTime, _patrolIdleRatio)
                     .Seek(_seekRadius, _seekHeight, _seekAngle, _seekTargetMask, _seekMaxDistance)
-                    .Decorator(() => Vector3.Distance(transform.position, tree.blackboard.target.position) <= _attackRange)
-                        .Execution(() =>
-                        {
-                            Debug.Log("Attack!!");
-                            return Result.Success;
-                        });
+                    .Condition(() => Vector3.Distance(transform.position, tree.blackboard.target.position) <= _attackRange)
+                        .Attack(_attackRange);
 
             aiOn = true;
         }

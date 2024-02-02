@@ -82,6 +82,13 @@ namespace RPG.AISystems
             return this;
         }
 
+        public BehaviourTree Condition(Func<bool> condition)
+        {
+            Node node = new Condition(this, condition);
+            Attach(_current, node);
+            return this;
+        }
+
         public BehaviourTree Execution(Func<Result> execute)
         {
             Node node = new Execution(this, execute);
@@ -92,6 +99,20 @@ namespace RPG.AISystems
         public BehaviourTree Seek(float radius, float height, float angle, LayerMask targetMask, float maxDistance)
         {
             Node node = new Seek(this, radius, height, angle, targetMask, maxDistance);
+            Attach(_current, node);
+            return this;
+        }
+
+        public BehaviourTree Attack(float range)
+        {
+            Node node = new Attack(this, range);
+            Attach(_current, node);
+            return this;
+        }
+
+        public BehaviourTree Patrol(float radius, float idleTime, float idleRatio)
+        {
+            Node node = new Patrol(this, radius, idleTime, idleRatio);
             Attach(_current, node);
             return this;
         }

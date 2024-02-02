@@ -37905,7 +37905,7 @@ Transform:
   m_GameObject: {fileID: 6334120573209508410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8763456, y: 3.4999995, z: 14.910385}
+  m_LocalPosition: {x: -7.02, y: 0.00009918213, z: -1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49288,6 +49288,9 @@ MonoBehaviour:
     m_Bits: 1024
   _seekMaxDistance: 10
   _attackRange: 1
+  _patrolRadius: 5
+  _patrolIdleTime: 2
+  _patrolIdleRatio: 0.5
 --- !u!114 &6673598059278969370
 MonoBehaviour:
   m_ObjectHideFlags: 0
