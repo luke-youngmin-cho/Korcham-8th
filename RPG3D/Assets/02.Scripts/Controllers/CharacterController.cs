@@ -236,7 +236,7 @@ namespace RPG.Controllers
                 }
                 else
                 {
-                    transform.position += _velocity * Time.fixedDeltaTime;
+                    transform.position += Quaternion.LookRotation(transform.forward) * _velocity * Time.fixedDeltaTime;
                 }
             }
         }
