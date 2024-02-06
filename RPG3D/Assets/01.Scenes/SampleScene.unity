@@ -18866,7 +18866,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -23901,7 +23901,7 @@ MonoBehaviour:
   m_Actions: {fileID: -944628639613478452, guid: 6dff57828e7bc8b4bbb584c264cd307c,
     type: 3}
   m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 645564721}
+  m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -44005,17 +44005,17 @@ PrefabInstance:
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}
       propertyPath: _scrollSpeed
-      value: 600
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}
       propertyPath: _rotateSpeedX
-      value: 360
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}
       propertyPath: _rotateSpeedY
-      value: 360
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}
@@ -44025,7 +44025,7 @@ PrefabInstance:
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}
       propertyPath: _scrollThreshold
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7553702680205493662, guid: fe9d4b9c40ba2f746bbad49a47599cd0,
         type: 3}

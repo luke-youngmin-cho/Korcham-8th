@@ -87,7 +87,7 @@ namespace RPG.Controllers
         float _atk = 10.0f;
 
         public Dictionary<State, bool> inputCommmands;
-        public int weaponType
+        public virtual int weaponType
         {
             get => _weaponType;
             set

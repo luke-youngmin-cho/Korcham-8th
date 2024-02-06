@@ -9,8 +9,32 @@ namespace RPG.Controllers
 {
     public class PlayerController : CharacterController, PlayerInputActions.IBattleFieldActions
     {
+        [Header("Weapon")]
         public GameObject twoHandedSword;
-        PlayerInputActions _inputActions;
+        public override int weaponType 
+        { 
+            get => base.weaponType;
+            set
+            {
+                base.weaponType = value;
+
+                switch (value)
+                {
+                    case 0:
+                        {
+                            twoHandedSword.SetActive(false);
+                        }
+                        break;
+                    case 1:
+                        {
+                            twoHandedSword.SetActive(true);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         [Header("Camera")]
         [SerializeField] CinemachineVirtualCamera _vCam;
@@ -23,19 +47,14 @@ namespace RPG.Controllers
         [SerializeField] float _scrollThreshold; // 스크롤 임계점, <-> 민감도
         [SerializeField] float _scrollSpeed;
 
+        PlayerInputActions _inputActions;
+        float _mouseX, _mouseY, _mouseScroll;
+
 
         protected override void Start()
         {
             base.Start();
             aiOn = false;
-            /*
-            PlayerInput playerInput = GetComponent<PlayerInput>();
-            playerInput.SwitchCurrentActionMap("BattleField");
-            var jump = playerInput.currentActionMap.FindAction("Jump");
-            jump.started += OnJump;
-            jump.performed += OnJump;
-            jump.canceled += OnJump;
-            */
             _inputActions = new PlayerInputActions();
             _inputActions.BattleField.SetCallbacks(this);
             _inputActions.Enable();
@@ -47,71 +66,28 @@ namespace RPG.Controllers
             };
         }
 
-        protected override void Update()
-        {
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-            speedGain = Input.GetKey(KeyCode.LeftShift) ? 2 : 1;
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                weaponType = 0;
-                twoHandedSword.SetActive(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                weaponType = 1;
-                twoHandedSword.SetActive(true);
-            }
-
-            inputCommmands[State.Attack] = isAttacking == false &&
-                                           Input.GetMouseButton(0);
-
-            base.Update();
-        }
-
         private void LateUpdate()
         {
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
-
-            transform.Rotate(Vector3.up, mouseX * _rotateSpeedY * Time.deltaTime, Space.World);
-            _vCam.Follow.Rotate(Vector3.left, mouseY * _rotateSpeedX * Time.deltaTime, Space.Self);
-            _vCam.Follow.localRotation 
-                = Quaternion.Euler(ClampAngle(_vCam.Follow.localEulerAngles.x, _angleXMin, _angleXMax),
-                                   0f,
-                                   0f);
-
-            if (Mathf.Abs(Input.mouseScrollDelta.y) >= _scrollThreshold)
-            {
-                _vCam.m_Lens.FieldOfView -= Input.mouseScrollDelta.y * _scrollSpeed * Time.deltaTime;
-                _vCam.m_Lens.FieldOfView = Mathf.Clamp(_vCam.m_Lens.FieldOfView, _fovMin, _fovMax);
-            }
+            UpdateSight();
+            UpdateZoom();
         }
 
-        private float ClampAngle(float angle, float min, float max)
+        private void UpdateSight()
         {
-            angle = (angle + 360f) % 360f;
-            min = (min + 360f) % 360f;
-            max = (max + 360f) % 360f;
-
-            if (min < max)
-            {
-                return Mathf.Clamp(angle, min, max);
-            }    
-            else if (angle > min || angle < max)
-            {
-                return angle;
-            }
-            else
-            {
-                float diffMin = Mathf.Min(Mathf.Abs(angle - min), Mathf.Abs(angle - 360f - min));
-                float diffMax = Mathf.Min(Mathf.Abs(angle - max), Mathf.Abs(angle + 360f - max));
-
-                return diffMin < diffMax ? min : max;
-            }
+            transform.Rotate(Vector3.up, _mouseX * _rotateSpeedY, Space.World);
+            _vCam.Follow.Rotate(Vector3.left, _mouseY * _rotateSpeedX, Space.Self);
+            _vCam.Follow.localRotation
+                = Quaternion.Euler(_vCam.Follow.localEulerAngles.x.ClampAsNormalizedAngle(_angleXMin, _angleXMax), 0.0f, 0.0f);
         }
+        
+        private void UpdateZoom()
+        {
+            if (Mathf.Abs(_mouseScroll) < _scrollThreshold)
+                return;
 
+            _vCam.m_Lens.FieldOfView -= _mouseScroll * _scrollSpeed;
+            _vCam.m_Lens.FieldOfView = Mathf.Clamp(_vCam.m_Lens.FieldOfView, _fovMin, _fovMax);
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -124,9 +100,49 @@ namespace RPG.Controllers
         {
             if (context.started)
                 inputCommmands[State.Jump] = true;
-
-            if (context.canceled)
+            else if (context.canceled)
                 inputCommmands[State.Jump] = false;
+        }
+
+        public void OnWeapon0(InputAction.CallbackContext context)
+        {
+            weaponType = 0;
+        }
+
+        public void OnWeapon1(InputAction.CallbackContext context)
+        {
+            weaponType = 1;
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                speedGain = 2;
+            else if (context.canceled)
+                speedGain = 1;
+        }
+
+        public void OnAttack1(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                inputCommmands[State.Attack] = isAttacking == false;
+            else if (context.canceled)
+                inputCommmands[State.Attack] = false;
+        }
+
+        public void OnMouseX(InputAction.CallbackContext context)
+        {
+            _mouseX = context.ReadValue<float>();
+        }
+
+        public void OnMouseY(InputAction.CallbackContext context)
+        {
+            _mouseY = context.ReadValue<float>();
+        }
+
+        public void OnMouseScroll(InputAction.CallbackContext context)
+        {
+            _mouseScroll = context.ReadValue<float>();
         }
     }
 }

@@ -46,6 +46,69 @@ namespace RPG.InputSystems
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weapon0"",
+                    ""type"": ""Button"",
+                    ""id"": ""15725592-94c5-4237-bfa9-d07f42e8cdd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Weapon1"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a8f1c3f-ddfc-45b7-8789-535bf7ce5a2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""bdf2a9d4-b901-457c-9554-131771bcafab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack1"",
+                    ""type"": ""Button"",
+                    ""id"": ""878da435-23f8-43f8-b1b4-d1ff1ba236f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse X"",
+                    ""type"": ""Value"",
+                    ""id"": ""8127bd51-f643-4ff8-a75a-471c5deb1d80"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Mouse Y"",
+                    ""type"": ""Value"",
+                    ""id"": ""399bac25-1e31-4718-8ad9-38b9d6127e26"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""614256da-af5d-4f0a-ab27-56c8997f5be2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -114,6 +177,83 @@ namespace RPG.InputSystems
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d40329c-4c4f-4050-90ed-df519211dc30"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cdc57fd-d7b4-4cba-bfb5-42bfbefcec9c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60a0ec59-f9c6-46f3-b417-248d2f2be7af"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af934b74-0dc3-43eb-a6e8-942c49eaf935"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc151ec3-b581-4451-a52a-2c5536c1c48f"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42ce21fc-525a-4ebf-9226-5aada7be85b4"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fdeef69-bf87-4d35-a142-8e43ba049711"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -124,6 +264,13 @@ namespace RPG.InputSystems
             m_BattleField = asset.FindActionMap("BattleField", throwIfNotFound: true);
             m_BattleField_Jump = m_BattleField.FindAction("Jump", throwIfNotFound: true);
             m_BattleField_Move = m_BattleField.FindAction("Move", throwIfNotFound: true);
+            m_BattleField_Weapon0 = m_BattleField.FindAction("Weapon0", throwIfNotFound: true);
+            m_BattleField_Weapon1 = m_BattleField.FindAction("Weapon1", throwIfNotFound: true);
+            m_BattleField_Sprint = m_BattleField.FindAction("Sprint", throwIfNotFound: true);
+            m_BattleField_Attack1 = m_BattleField.FindAction("Attack1", throwIfNotFound: true);
+            m_BattleField_MouseX = m_BattleField.FindAction("Mouse X", throwIfNotFound: true);
+            m_BattleField_MouseY = m_BattleField.FindAction("Mouse Y", throwIfNotFound: true);
+            m_BattleField_MouseScroll = m_BattleField.FindAction("MouseScroll", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -187,12 +334,26 @@ namespace RPG.InputSystems
         private List<IBattleFieldActions> m_BattleFieldActionsCallbackInterfaces = new List<IBattleFieldActions>();
         private readonly InputAction m_BattleField_Jump;
         private readonly InputAction m_BattleField_Move;
+        private readonly InputAction m_BattleField_Weapon0;
+        private readonly InputAction m_BattleField_Weapon1;
+        private readonly InputAction m_BattleField_Sprint;
+        private readonly InputAction m_BattleField_Attack1;
+        private readonly InputAction m_BattleField_MouseX;
+        private readonly InputAction m_BattleField_MouseY;
+        private readonly InputAction m_BattleField_MouseScroll;
         public struct BattleFieldActions
         {
             private @PlayerInputActions m_Wrapper;
             public BattleFieldActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Jump => m_Wrapper.m_BattleField_Jump;
             public InputAction @Move => m_Wrapper.m_BattleField_Move;
+            public InputAction @Weapon0 => m_Wrapper.m_BattleField_Weapon0;
+            public InputAction @Weapon1 => m_Wrapper.m_BattleField_Weapon1;
+            public InputAction @Sprint => m_Wrapper.m_BattleField_Sprint;
+            public InputAction @Attack1 => m_Wrapper.m_BattleField_Attack1;
+            public InputAction @MouseX => m_Wrapper.m_BattleField_MouseX;
+            public InputAction @MouseY => m_Wrapper.m_BattleField_MouseY;
+            public InputAction @MouseScroll => m_Wrapper.m_BattleField_MouseScroll;
             public InputActionMap Get() { return m_Wrapper.m_BattleField; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -208,6 +369,27 @@ namespace RPG.InputSystems
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Weapon0.started += instance.OnWeapon0;
+                @Weapon0.performed += instance.OnWeapon0;
+                @Weapon0.canceled += instance.OnWeapon0;
+                @Weapon1.started += instance.OnWeapon1;
+                @Weapon1.performed += instance.OnWeapon1;
+                @Weapon1.canceled += instance.OnWeapon1;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @Attack1.started += instance.OnAttack1;
+                @Attack1.performed += instance.OnAttack1;
+                @Attack1.canceled += instance.OnAttack1;
+                @MouseX.started += instance.OnMouseX;
+                @MouseX.performed += instance.OnMouseX;
+                @MouseX.canceled += instance.OnMouseX;
+                @MouseY.started += instance.OnMouseY;
+                @MouseY.performed += instance.OnMouseY;
+                @MouseY.canceled += instance.OnMouseY;
+                @MouseScroll.started += instance.OnMouseScroll;
+                @MouseScroll.performed += instance.OnMouseScroll;
+                @MouseScroll.canceled += instance.OnMouseScroll;
             }
 
             private void UnregisterCallbacks(IBattleFieldActions instance)
@@ -218,6 +400,27 @@ namespace RPG.InputSystems
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Weapon0.started -= instance.OnWeapon0;
+                @Weapon0.performed -= instance.OnWeapon0;
+                @Weapon0.canceled -= instance.OnWeapon0;
+                @Weapon1.started -= instance.OnWeapon1;
+                @Weapon1.performed -= instance.OnWeapon1;
+                @Weapon1.canceled -= instance.OnWeapon1;
+                @Sprint.started -= instance.OnSprint;
+                @Sprint.performed -= instance.OnSprint;
+                @Sprint.canceled -= instance.OnSprint;
+                @Attack1.started -= instance.OnAttack1;
+                @Attack1.performed -= instance.OnAttack1;
+                @Attack1.canceled -= instance.OnAttack1;
+                @MouseX.started -= instance.OnMouseX;
+                @MouseX.performed -= instance.OnMouseX;
+                @MouseX.canceled -= instance.OnMouseX;
+                @MouseY.started -= instance.OnMouseY;
+                @MouseY.performed -= instance.OnMouseY;
+                @MouseY.canceled -= instance.OnMouseY;
+                @MouseScroll.started -= instance.OnMouseScroll;
+                @MouseScroll.performed -= instance.OnMouseScroll;
+                @MouseScroll.canceled -= instance.OnMouseScroll;
             }
 
             public void RemoveCallbacks(IBattleFieldActions instance)
@@ -239,6 +442,13 @@ namespace RPG.InputSystems
         {
             void OnJump(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
+            void OnWeapon0(InputAction.CallbackContext context);
+            void OnWeapon1(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
+            void OnAttack1(InputAction.CallbackContext context);
+            void OnMouseX(InputAction.CallbackContext context);
+            void OnMouseY(InputAction.CallbackContext context);
+            void OnMouseScroll(InputAction.CallbackContext context);
         }
     }
 }
