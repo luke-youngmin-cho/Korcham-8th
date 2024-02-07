@@ -1,0 +1,15 @@
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\bin\Debug\net6.0\Algorithms.cs.exe
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\bin\Debug\net6.0\Algorithms.cs.deps.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\bin\Debug\net6.0\Algorithms.cs.runtimeconfig.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\bin\Debug\net6.0\Algorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\bin\Debug\net6.0\Algorithms.cs.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.AssemblyInfoInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.AssemblyInfo.cs
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.sourcelink.json
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\refint\Algorithms.cs.dll
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.pdb
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\Algorithms.cs.genruntimeconfig.cache
+C:\Users\USER\Documents\GitHub\Korcham-8th\CSharp\Algorithms.cs\obj\Debug\net6.0\ref\Algorithms.cs.dll

@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inheritance2", "Inheritance
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortAlgorithms.cs", "SortAlgorithms.cs\SortAlgorithms.cs.csproj", "{039BB9F6-7C74-4556-B3C3-D05614169C2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{262C5020-E42D-4828-957E-A8D6D8FFA0B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{262C5020-E42D-4828-957E-A8D6D8FFA0B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.cs", "Algorithms.cs\Algorithms.cs.csproj", "{45E7DEAF-C228-4C3F-9F21-BC7A45A49DBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{262C5020-E42D-4828-957E-A8D6D8FFA0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{262C5020-E42D-4828-957E-A8D6D8FFA0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{262C5020-E42D-4828-957E-A8D6D8FFA0B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E7DEAF-C228-4C3F-9F21-BC7A45A49DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E7DEAF-C228-4C3F-9F21-BC7A45A49DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E7DEAF-C228-4C3F-9F21-BC7A45A49DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E7DEAF-C228-4C3F-9F21-BC7A45A49DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
