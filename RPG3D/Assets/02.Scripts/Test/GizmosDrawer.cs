@@ -7,6 +7,11 @@ public class GizmosDrawer : MonoBehaviour
 {
     public static Action drawAction;
 
+    private void OnApplicationQuit()
+    {
+        drawAction = null;
+    }
+
     private void OnDrawGizmos()
     {
         drawAction?.Invoke();

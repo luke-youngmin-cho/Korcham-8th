@@ -9,6 +9,10 @@ namespace RPG.Controllers
 {
     public class PlayerController : CharacterController, PlayerInputActions.IBattleFieldActions
     {
+        // key : id , value : player.
+        public static Dictionary<int, PlayerController> spawned = new Dictionary<int, PlayerController>();
+        public int id;
+
         [Header("Weapon")]
         public GameObject twoHandedSword;
         public override int weaponType 
@@ -50,6 +54,17 @@ namespace RPG.Controllers
         PlayerInputActions _inputActions;
         float _mouseX, _mouseY, _mouseScroll;
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+            spawned.Add(id, this);
+        }
+
+        private void OnDestroy()
+        {
+            spawned.Remove(id);
+        }
 
         protected override void Start()
         {
